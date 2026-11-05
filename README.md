@@ -2,7 +2,7 @@
 Uma ou duas frases: integração com APIs para que o usuário consulte informações sobre filmes e séries.
   
 ## Como executar 
-abrir o index.html no navegador. 
+Link do GitHub Pages (https://github.com/lucasdelgallo/FIBFLIX?utm_source=chatgpt.com) ou abrir o index.html no navegador.
   
 ## Integrantes e responsabilidades - 
 
