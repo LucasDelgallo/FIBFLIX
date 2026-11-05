@@ -1,0 +1,303 @@
+body {
+    background-color: #143985;
+}
+
+/* Conteúdo do Site */
+
+/* Banner */
+.banner{
+    width: 100%;
+}
+
+/* Estilo do cabeçalho */
+.site-header {
+    background-color: #F7941D;
+    padding: 5px 10px;
+
+    display: flex;
+    align-items: center;
+}
+.site-logo{
+    width: 150px;
+}
+.site-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.site-nav ul{
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*Parte da letra*/
+.site-nav a {
+    display: inline-block;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+.site-nav a:hover {
+    color: rgb(211, 211, 211);
+    transform: translateY(-10px) scale(1.1); 
+}
+h1 {
+    color: #fff;
+    margin-top: 50px;
+    font-family: 'Bebas Neue', sans-serif;
+}
+h2 {
+    color: #fff;
+    margin-top: 50px;
+    font-family: 'Roboto', sans-serif;
+}
+h3 {
+    color: #fff;
+    margin-top: 50px;
+    font-family: 'Roboto', sans-serif;
+}
+h4 {
+    color: #fff;
+    margin-top: 50px;
+    font-family: 'Roboto', sans-serif;
+}
+p {
+    color: #fff;
+    font-size: 18px;
+    margin-top: 50px;
+}
+.site-footer {
+    background-color: #F7941D;
+    padding: 5px 10px;
+
+    display: flex;
+    align-items: center;
+}
+.site-navfooter {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.site-nav-footer ul{
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    color:white
+}
+/* Destaques e Lista de Filmes e Series */
+
+.destaques {
+    padding: 30px;
+}
+
+.destaques h2 {
+    width: fit-content;
+    border: 3px solid white;
+    border-radius: 12px;
+    padding: 16px;
+    font-weight: bold;
+    margin-top: 0;
+}
+.filmes-destaque , .series-destaque {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 20px;
+
+
+    width: fit-content;
+    border: 5px solid white;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.poster {
+    position: relative;
+    width: 180px;
+}
+
+.numero-top {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #F7941D;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-conteudo {
+    width: 200px;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.card-conteudo:hover {
+    transform: translateY(-10px);
+}
+
+.card-conteudo img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.card-conteudo h3 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+}
+
+.nota {
+    margin: 0;
+    color: #F7941D;
+}
+
+.nota span {
+    letter-spacing: 2px;
+}
+
+.nota strong {
+    margin-left: 6px;
+    color: white;
+}
+
+/* Busca e Filtros */
+
+.filtros {
+    margin: 30px 24px 0;
+    width: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filtro,
+.pesquisa {
+    height: 42px;
+    border: 1px solid white;
+    border-radius: 8px;
+    background-color: #143985;
+    color: white;
+}
+
+.controles-filtro {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.filtro {
+    padding: 0 12px;
+    height: 42px;
+    padding: 0 12px;
+    flex-shrink: 0;
+}
+
+.pesquisa {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    height: 42px;
+}
+
+.pesquisa input {
+    width: 230px;
+    padding: 0 12px;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: white;
+    flex: 1;
+    min-width: 0;
+}
+
+.pesquisa input::placeholder {
+    color: #dddddd;
+}
+
+.pesquisa button {
+    width: 42px;
+    border: 0;
+    background-color: #F7941D;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* Minha lista */
+.lista-filmes {
+    display: grid;
+    grid-template-columns: repeat(4, 180px);
+    justify-content: center;
+    gap: 24px;
+    margin: 30px auto;
+}
+
+/* Em telas menores, para celulares e outros aparelhos */
+@media (max-width: 800px) {
+    .lista-filmes {
+        grid-template-columns: repeat(2, 180px);
+    }
+}
+
+@media (max-width: 420px) {
+    .lista-filmes {
+        grid-template-columns: 180px;
+    }
+}
+@media (max-width: 600px) {
+    .site-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .site-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .filmes-destaque,
+    .series-destaque {
+        width: 100%;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    .destaques {
+        padding: 16px;
+    }
+
+    .filtros {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    .controles-filtro {
+        flex-wrap: wrap;
+    }
+
+    .filtro,
+    .pesquisa {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
