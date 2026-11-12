@@ -17,33 +17,56 @@ const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
 const tituloPrincipal = document.getElementById("titulo-principal");
 
-// renderizar lista de filmes html
+
+// posicao: número do ranking (só na index). aoMudar: função chamada após favoritar/remover
+function criarCard(item, posicao, aoMudar) {
+    const card = document.createElement("div");
+    card.classList.add("card-conteudo");
+    card.innerHTML = `
+        <div class="poster">
+            <button type="button" class="favoritar"></button>
+            <img src="${item.poster}" alt="${item.titulo}">
+            ${posicao ? `<span class="numero-top">${posicao}</span>` : ""}
+        </div>
+        <h3>${item.titulo}</h3>
+        <p class="nota">
+            <span aria-label="estrelas">★</span>
+            <strong>${Number(item.nota).toFixed(1)}</strong>
+        </p>
+    `;
+
+    const botao = card.querySelector(".favoritar");
+    atualizarBotao(botao, estaNaLista(item.id));
+
+    botao.addEventListener("click", () => {
+        if (estaNaLista(item.id)) {
+            removerDaLista(item.id);
+            atualizarBotao(botao, false);
+        } else {
+            adicionarNaLista(item);
+            atualizarBotao(botao, true);
+        }
+        if (aoMudar) aoMudar();
+    });
+
+    return card;
+}
+
 function renderizarFilmes(filmes) {
     if (!filmesDestaqueContainer) return;
-    
     filmesDestaqueContainer.innerHTML = "";
 
     filmes.forEach((filme, index) => {
-        const posterPath = filme.poster_path 
-            ? `https://image.tmdb.org/t/p/w500${filme.poster_path}` 
-            : 'Fotos/Poster Filme.png';
-
-        const card = document.createElement("div");
-        card.classList.add("card-conteudo");
-        card.innerHTML = `
-            <div class="poster">
-                <img src="${posterPath}" alt="${filme.title}">
-                <span class="numero-top">${index + 1}</span>
-            </div>
-            <h3>${filme.title}</h3>
-            <p class="nota">
-                <span aria-label="estrelas">★</span>
-                <strong>${filme.vote_average ? filme.vote_average.toFixed(1) : '5.0'}</strong>
-            </p>
-        `;
+        const card = criarCard(normalizarFilme(filme), index + 1);
         filmesDestaqueContainer.appendChild(card);
     });
 }
+
+// renderizar lista de filmes html
+if (filmesDestaqueContainer) {
+    carregarFilmesPopulares();
+}
+
 
 // requisição de filmes populares
 function carregarFilmesPopulares() {
@@ -101,3 +124,88 @@ if (tituloPrincipal) {
         alert("Você clicou no título principal do FIBFlix!");
     });
 }
+
+// ===== MINHA LISTA (localStorage) =====
+const CHAVE_LISTA = "fibflix-minha-lista";
+
+function lerLista() {
+    try {
+        return JSON.parse(localStorage.getItem(CHAVE_LISTA)) || [];
+    } catch {
+        return [];
+    }
+}
+
+function salvarLista(lista) {
+    localStorage.setItem(CHAVE_LISTA, JSON.stringify(lista));
+}
+
+function estaNaLista(id) {
+    return lerLista().some(item => item.id === id);
+}
+
+function adicionarNaLista(item) {
+    const lista = lerLista();
+    if (!lista.some(i => i.id === item.id)) {
+        lista.push(item);
+        salvarLista(lista);
+    }
+}
+
+function removerDaLista(id) {
+    salvarLista(lerLista().filter(i => i.id !== id));
+}
+
+
+// Padroniza os dados da API (filmes usam "title", séries usam "name")
+function normalizarFilme(filme) {
+    return {
+        id: filme.id,
+        titulo: filme.title || filme.name,
+        poster: filme.poster_path
+            ? `https://image.tmdb.org/t/p/w500${filme.poster_path}`
+            : "Fotos/Poster Filme.png",
+        nota: filme.vote_average || 0
+    };
+}
+
+function atualizarBotao(botao, naLista) {
+    botao.textContent = naLista ? "♥" : "♡";
+    botao.classList.toggle("ativo", naLista);
+    botao.setAttribute(
+        "aria-label",
+        naLista ? "Remover da Minha Lista" : "Adicionar à Minha Lista"
+    );
+}
+
+
+// ===== PÁGINA MINHA LISTA =====
+const listaContainer = document.getElementById("lista-filmes");
+const filtroOrdem = document.getElementById("filtro-ordem");
+const mensagemVazia = document.getElementById("lista-vazia");
+
+function renderizarMinhaLista() {
+    if (!listaContainer) return;
+
+    const lista = lerLista();
+
+    if (filtroOrdem && filtroOrdem.value === "a-z") {
+        lista.sort((a, b) => a.titulo.localeCompare(b.titulo, "pt-BR"));
+    } else if (filtroOrdem && filtroOrdem.value === "z-a") {
+        lista.sort((a, b) => b.titulo.localeCompare(a.titulo, "pt-BR"));
+    }
+
+    listaContainer.innerHTML = "";
+    mensagemVazia.classList.toggle("d-none", lista.length > 0);
+
+    lista.forEach(item => {
+        // sem posição de ranking; ao remover, redesenha a lista
+        listaContainer.appendChild(criarCard(item, null, renderizarMinhaLista));
+    });
+}
+
+if (filtroOrdem) {
+    filtroOrdem.addEventListener("change", renderizarMinhaLista);
+}
+
+renderizarMinhaLista();

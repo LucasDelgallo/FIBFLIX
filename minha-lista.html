@@ -25,7 +25,7 @@
         </header>
 
         <div class="filtros">
-            <select class="filtro" aria-label="Ordenar filmes">
+            <select class="filtro" id="filtro-ordem" aria-label="Ordenar filmes">
                 <option value="">Ordenar por</option>
                 <option value="a-z">Ordem de A a Z</option>
                 <option value="z-a">Ordem de Z a A</option>
@@ -39,36 +39,12 @@
             </div>
         </div>
         
-        <section class="lista-filmes">
-            <div class="card-conteudo">
-                <img src="Fotos/Poster Filme.png" alt="Pôster do filme">
-                <h3>Título do Filme</h3>
-                <p class="nota">★ <strong>5,0</strong></p>
-            </div>
+        <p id="lista-vazia" class="text-center d-none">
+            Sua lista está vazia. Favorite filmes e séries na página inicial!
+        </p>
 
-            <div class="card-conteudo">
-                <img src="Fotos/Poster Filme.png" alt="Pôster do filme">
-                <h3>Título do Filme</h3>
-                <p class="nota">★ <strong>4,5</strong></p>
-            </div>
-
-            <div class="card-conteudo">
-                <img src="Fotos/Poster Filme.png" alt="Pôster do filme">
-                <h3>Título do Filme</h3>
-                <p class="nota">★ <strong>4,0</strong></p>
-            </div>
-
-            <div class="card-conteudo">
-                <img src="Fotos/Poster Filme.png" alt="Pôster do filme">
-                <h3>Título do Filme</h3>
-                <p class="nota">★ <strong>3,5</strong></p>
-            </div>
-
-            <div class="card-conteudo">
-                <img src="Fotos/Poster Filme.png" alt="Pôster do filme">
-                <h3>Título do Filme</h3>
-                <p class="nota">★ <strong>3,0</strong></p>
-            </div>
+        <section class="lista-filmes" id="lista-filmes">
+            <!-- cards inseridos pelo JS -->
         </section>
 
         <script src="script.js"></script>
