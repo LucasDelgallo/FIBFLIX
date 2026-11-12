@@ -140,6 +140,37 @@ p {
     font-weight: bold;
 }
 
+
+.favoritar {
+    position: absolute;   /* "flutua" sobre o pôster */
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.favoritar:hover {
+    transform: scale(1.15);
+}
+
+.favoritar.ativo {
+    background-color: #e50914;
+}
+
 .card-conteudo {
     width: 200px;
     color: white;
