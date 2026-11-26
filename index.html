@@ -32,22 +32,14 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <!-- Elemento que receberá o evento de click -->
-                    <h1 id="titulo-principal" style="cursor: pointer;"><strong>FIBFLIX</strong></h1>
+                    <h1 id="titulo-principal" > 
+                        <strong>FIBFLIX</strong> 
+                    </h1>
                 </div>
                 <div class="col-md-6">
                     <p>Bem-vindo ao FIB Flix!</p>
                 </div>  
             </div>
-
-            <!-- Formulário de Pesquisa (Eventos: submit e input) -->
-            <form id="search-form" class="row g-3 my-3">
-                <div class="col-md-8">
-                    <input type="text" id="search-input" class="form-control" placeholder="Pesquisar filme...">
-                </div>
-                <div class="col-md-3">
-                    <button type="submit" class="btn btn-danger w-100">Buscar</button>
-                </div>
-            </form>
 
             <!-- Mensagem amigável caso a requisição falhe -->
             <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
@@ -56,15 +48,25 @@
             <div class="col-md-12">
                 <section class="destaques">
                     <h2>Filmes em Destaque</h2>
-                    <div class="filmes-destaque d-flex flex-wrap gap-3">
-                        <!-- inserido aqui pelo JS -->
+                    <div class="filmes-borda">
+                        <div class="card-conteudo">
+                            <div class="poster">
+                                <img src="Fotos/Poster Filme.png" alt="Pôster">
+                                <span class="numero-top">1</span>
+                            </div>
+                            <h3>Título do Filme</h3>
+                            <p class="nota">
+                                <span aria-label="estrelas">★</span>
+                                <strong>5,0</strong>
+                            </p>
+                        </div>
                     </div>
                 </section>
             </div>
             <div class ="col-md-12">
                 <section class="destaques">
                     <h2>Séries em Destaque</h2>
-                    <div class="series-destaque">
+                    <div class="series-borda">
                         <div class="card-conteudo">
                             <div class="poster">
                                 <span class="favoritar"></span>

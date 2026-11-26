@@ -23,8 +23,8 @@
                 </ul>
             </nav>
         </header>
-        <div class="filtros">
-            <select class="filtro" aria-label="Filtrar por categoria">
+                <div class="filtros">
+            <select class="filtro" id="filtro-genero" aria-label="Filtrar por categoria">
                 <option value="">Todos os gêneros</option>
                 <option value="acao">Ação</option>
                 <option value="aventura">Aventura</option>
@@ -38,307 +38,118 @@
                 <option value="terror">Terror</option>
             </select>
 
-            <div class="pesquisa">
-                <input type="search" placeholder="Buscar filme...">
-                <button type="button" aria-label="Pesquisar">⌕</button>
+            <form class="pesquisa" id="form-busca">
+                <input type="search" id="campo-busca" placeholder="Buscar filme...">
+                <button type="submit" aria-label="Pesquisar">⌕</button>
+            </form>
+        </div>
+
+        <!-- Resultados do filtro e da busca (aparecem no lugar dos destaques) -->
+        <section class="lista-resultados d-none" id="resultados"></section>
+        <div class="ver-mais-area d-none" id="area-mais">
+            <button type="button" class="btn-ver-mais">Mostrar mais</button>
+        </div>
+
+        <div class="container" id="secoes">
+            <div class ="col-md-12">
+                <section class="destaques">
+                            <h2>Filmes em Destaque</h2>
+                            <div class="filmes-borda">
+                                <div class="card-conteudo">
+                                    <div class="poster">
+                                        <img src="Fotos/Poster Filme.png" alt="Pôster">
+                                        <span class="numero-top">1</span>
+                                    </div>
+                                    <h3>Título do Filme</h3>
+                                    <p class="nota">
+                                        <span aria-label="estrelas">★</span>
+                                        <strong>5,0</strong>
+                                    </p>
+                                </div>
+                            </div>
+                </section>
+            </div>
+
+            <div class="col-md-12">
+                <section class="destaques acao">
+                    <h2>Ação</h2>
+                    <div class="destaques filmes-borda">
+                        <div class="card-conteudo">
+                            <img src="Fotos/Poster Filme.png" alt="Pôster">
+                            <h3>Título do Filme</h3>
+                            <p class="nota">
+                                <span aria-label="estrelas">★</span>
+                                <strong>5,0</strong>
+                            </p>
+                        </div>
+                        
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-12">
+                <section class="destaques aventura">
+                    <h2>Aventura</h2>
+                    <div class="filmes-borda">
+                        <div class="card-conteudo">
+                            <img src="Fotos/Poster Filme.png" alt="Pôster">
+                            <h3>Título do Filme</h3>
+                            <p class="nota">
+                                <span aria-label="estrelas">★</span>
+                                <strong>5,0</strong>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-md-12">
+                <section class="destaques animacao">
+                    <h2>Animação</h2>
+                    <div class="filmes-borda">
+                        <div class="card-conteudo">
+                            <img src="Fotos/Poster Filme.png" alt="Pôster">
+                            <h3>Título do Filme</h3>
+                            <p class="nota">
+                                <span aria-label="estrelas">★</span>
+                                <strong>5,0</strong>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="col-md-12">
+                <section class="destaques comedia">
+                    <h2>Comédia</h2>
+                    <div class="filmes-borda">
+                        <div class="card-conteudo">
+                            <img src="Fotos/Poster Filme.png" alt="Pôster">
+                            <h3>Título do Filme</h3>
+                            <p class="nota">
+                                <span aria-label="estrelas">★</span>
+                                <strong>5,0</strong>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-md-12">
+                <section class="destaques drama">
+                    <h2>Drama</h2>
+                    <div class="filmes-borda">
+                        <div class="card-conteudo">
+                            <img src="Fotos/Poster Filme.png" alt="Pôster">
+                            <h3>Título do Filme</h3>
+                            <p class="nota">
+                                <span aria-label="estrelas">★</span>
+                                <strong>5,0</strong>
+                            </p>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
-        
-        <section class="destaques">
-            <h2>Filmes em Destaque</h2>
-            <div class="filmes-destaque">
-                <div class="card-conteudo">
-                    <div class="poster">
-                        <img src="Fotos/Poster Filme.png" alt="Pôster">
-                        <span class="numero-top">1</span>
-                    </div>
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>5,0</strong>
-                    </p>
-                </div>
-
-                <div class="card-conteudo">
-                    <div class="poster">
-                        <img src="Fotos/Poster Filme.png" alt="Pôster">
-                        <span class="numero-top">2</span>
-                    </div>
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>4,0</strong>
-                    </p>
-                </div>
-
-                <div class="card-conteudo">
-                    <div class="poster">
-                        <img src="Fotos/Poster Filme.png" alt="Pôster">
-                        <span class="numero-top">3</span>
-                    </div>
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>3,0</strong>
-                    </p>
-                </div>
-
-                <div class="card-conteudo">
-                    <div class="poster">
-                        <img src="Fotos/Poster Filme.png" alt="Pôster">
-                        <span class="numero-top">4</span>
-                    </div>
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>2,0</strong>
-                    </p>
-                </div>
-
-                <div class="card-conteudo">
-                    <div class="poster">
-                        <img src="Fotos/Poster Filme.png" alt="Pôster">
-                        <span class="numero-top">5</span>
-                    </div>
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>1,0</strong>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="destaques">
-            <h2>Ação</h2>
-            <div class="filmes-destaque">
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>5,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>4,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>3,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>2,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>1,0</strong>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="destaques">
-            <h2>Aventura</h2>
-            <div class="filmes-destaque">
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>5,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>4,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>3,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>2,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>1,0</strong>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="destaques">
-            <h2>Animação</h2>
-            <div class="filmes-destaque">
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>5,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>4,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>3,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>2,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>1,0</strong>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="destaques">
-            <h2>Comédia</h2>
-            <div class="filmes-destaque">
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>5,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>4,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>3,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>2,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>1,0</strong>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="destaques">
-            <h2>Drama</h2>
-            <div class="filmes-destaque">
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>5,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>4,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>3,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>2,0</strong>
-                    </p>
-                </div>
-                <div class="card-conteudo">
-                    <img src="Fotos/Poster Filme.png" alt="Pôster">
-                    <h3>Título do Filme</h3>
-                    <p class="nota">
-                        <span aria-label="estrelas">★</span>
-                        <strong>1,0</strong>
-                    </p>
-                </div>
-            </div>
-        </section>
-        
         <script src="script.js"></script>
     </body>
 </html>
