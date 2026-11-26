@@ -108,6 +108,12 @@ Resposta: Explicou que o erro vinha de chamar ativarVerMais em páginas onde o c
 Aceitei: Apliquei; o erro sumiu.
 
 
+## 20/11 - [Nycolas] - ClaudeCode
+Prompt: [anexei imagem de um modelo] Então tenho que fazer uma tela suspensa quando clica no pôster do filme, tipo que ele fique meio cinza (sabe quando passa o mouse) e apareça um botão "Ver mais" do filme, ou algo nesse estilo da foto.
+Resposta: Mostrou uma janela de detalhes (elemento dialog) aberta ao clicar no pôster, com o pôster escurecido e o botão "Ver mais" ao passar o mouse; os dados vêm de uma chamada à API (elenco, sinopse, nota, orçamento e outros).
+Aceitei: A janela de detalhes e o efeito do mouse.
+
+
 ## 19/11 - [Nycolas] - ClaudeCode
 Prompt: [colei a seção de séries "Ação" com as classes acao-Series e series-borda]. Claude, tem como fazer uma dessas para Aventura, Animação, Comédia e Drama?
 Resposta: Respondeu que dá para fazer e mostrou como criar as seções dos outros gêneros.
