@@ -1,0 +1,139 @@
+# Diário de IA – Grupo 3 – FIBFlix
+
+
+## 12/11 - Lucas - ClaudeCode
+Prompt: Em anexo estão os arquivos do nosso trabalho. Preciso de me oriente no cumprimento desta implementação desses requisitos: precisamos add ao projeto essas funções (Criar, listar, editar e excluir itens, com os dados mantidos ao recarregar) Hoje, queremos fazer essas alterações na página da "minha lista" e na página principal "index". Para  função "criar" pensamos na função de add filmes em destaque da página index até a página da minha lista. Quero add um botão no canto superior esquerdo de cada pôster em cima dele. Quando esse filme estiver add na página "minha lista" quero que ele possa ser removido ao clicar novamente no mesmo botão. Para a função de "lista" gostaria de add um filtro de A-Z e Z-A na página "minha lista". Me guie em como fazer essas alterações, me explique o porquê de cada alteração.
+Resposta: retornou explicando as funções de deveríamos utilizar, para salvar a lista no LocalStorage, e renderizar os filmes, além dos ícones para favoritar.
+Aceitei: as sugestões estavam de acordo, e segui com as orientações para implementar as funções e seguir com os testes
+
+
+## 12/11 - Lucas - ClaudeCode
+Prompt: usando essas funções no JS, quantos filmes poderíamos salvar na seção "minha lista"?
+// ===== MINHA LISTA (localStorage) =====
+const CHAVE_LISTA = "fibflix-minha-lista";
+
+function lerLista() {
+    try {
+        return JSON.parse(localStorage.getItem(CHAVE_LISTA)) || [];
+    } catch {
+        return [];
+    }
+}
+
+function salvarLista(lista) {
+    localStorage.setItem(CHAVE_LISTA, JSON.stringify(lista));
+}
+
+function estaNaLista(id) {
+    return lerLista().some(item => item.id === id);
+}
+
+function adicionarNaLista(item) {
+    const lista = lerLista();
+    if (!lista.some(i => i.id === item.id)) {
+        lista.push(item);
+        salvarLista(lista);
+    }
+}
+
+function removerDaLista(id) {
+    salvarLista(lerLista().filter(i => i.id !== id));
+}
+Resposta: cada pôster salvo terá até 200 caracteres, sendo o limite até 5.000.000, sendo equivalente até +/- 30mil filmes
+Aceitei: a explicação fez sentido sobre minha pergunta, pois o medo era não ser funcional para um usuário real, mas teremos espaço no localStorage para isso.
+
+
+## 12/11 - Lucas - ClaudeCode
+Prompt: como verifico se há eventos no localStorage pelo Chrome na função inspecionar?
+Resposta: dentro de inspecionar, devemos verificar a aba Application. E não são "eventos", mas itens salvos.
+Aceitei: conseguimos verificar os itens salvos.
+
+
+## 12/11 - Lucas - ClaudeCode
+Prompt: Na página do index, onde tínhamos os filmes em destaque, estamos com este retorno: "Ops! Não foi possível carregar os filmes em destaque no momento. Verifique sua conexão e tente novamente mais tarde.". Tem haver com este ponto do JS? 
+
+// renderizar lista de filmes html
+if (filmesDestaqueContainer) {
+    carregarFilmesPopulares();
+}
+
+// requisição de filmes populares
+function carregarFilmesPopulares() {
+    fetch(url, {
+        method: "GET",
+        headers: {
+            "Authorization": Bearer ${token},
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Falha na resposta da API");
+        }
+        return response.json();
+    })
+    .then(data => {
+
+        const top10Filmes = data.results.slice(0, 10);
+        renderizarFilmes(top10Filmes);
+    })
+    .catch(error => {
+        console.error("Erro ao buscar filmes:", error);
+        // Exibe mensagem amigável na tela se falhar
+        if (errorMessageDiv) {
+            errorMessageDiv.textContent = "Ops! Não foi possível carregar os filmes em destaque no momento. Verifique sua conexão e tente novamente mais tarde.";
+            errorMessageDiv.classList.remove("d-none");
+        }
+    });
+}
+Resposta: disse que o erro não tinha haver com o código, mas com uma chamada de função que estava faltando.
+Aceitei: tínhamos retirado acidentalmente a função para os filmes de destaques. Retornamos com a função e funcionou.
+
+
+## 19/11 - [Nycolas] - ClaudeCode
+Prompt: Claude, tirei as chamadas desnecessárias, mas, ao mudar isso, deu erro. Mudei exatamente isto: [colei o trecho da função renderizarSeries].
+Resposta: Apontou que o forEach das séries estava com parâmetros errados e que a variável "filme" não existia nesse trecho, e passei o trecho corrigido.
+Aceitei: Apliquei a correção e as séries voltaram a aparecer.
+
+
+## 19/11 - [Nycolas] - ClaudeCode
+Prompt: O que eu fiz que não apareceu o botão em series.html? [colei o trecho do series.html].
+Resposta: Indicou o ajuste no series.html para o botão "Ver mais" aparecer.
+Aceitei: Apliquei o ajuste, mas apareceu um erro novo no console.
+
+
+## 19/11 - [Nycolas] - ClaudeCode
+Prompt: script.js:224 Uncaught TypeError: Cannot read properties of null (reading 'classList') — ativarVerMais @ script.js:224.
+Resposta: Explicou que o erro vinha de chamar ativarVerMais em páginas onde o container não existe (valor null) e moveu a chamada para dentro das funções de renderização, com verificação de null.
+Aceitei: Apliquei; o erro sumiu.
+
+
+## 19/11 - [Nycolas] - ClaudeCode
+Prompt: [colei a seção de séries "Ação" com as classes acao-Series e series-borda]. Claude, tem como fazer uma dessas para Aventura, Animação, Comédia e Drama?
+Resposta: Respondeu que dá para fazer e mostrou como criar as seções dos outros gêneros.
+Aceitei: A ideia de ter uma seção por gênero (a forma de implementar mudou nos prompts seguintes).
+
+
+## 19/11 - [Nycolas] - ClaudeCode
+Prompt: Aqui, como eu faria? [colei os filtros do filmes.html]. Para isso funcionar, quando eu escolher esses gêneros de filme e também a busca, queria que mostrassem uma lista com todos os filmes (estilo Minha Lista, mas sem centralizar) e, depois de umas 4 ou 5 linhas, um botão "Mostrar mais", tanto na pesquisa quanto no filtro suspenso.
+Resposta: Mostrou a implementação do filtro por gênero e a busca por nome (API do TMDB) em uma lista de resultados paginada, com botão "Mostrar mais", escondendo os destaques enquanto há resultados.
+Aceitei: Filtro por gênero, busca e botão "Mostrar mais" nas páginas de filmes e séries.
+
+
+## 19/11 - [Nycolas] - ClaudeCode
+Prompt: <div class="container" id="secoes"> — essa parte é para quê?
+Resposta: Explicou que o 'secoes' agrupa os destaques e os gêneros para o JS escondê-los quando aparecem os resultados da busca ou do filtro.
+Aceitei: Entendi e mantive o código como estava.
+
+
+## 19/11 - [Nycolas] - ClaudeCode
+Prompt: [colei o bloco do .then(d => { ... } com um "});" sobrando]. Tá dando erro.
+Resposta: Retornou onde estava o erro.
+Rejeitei: A instrução anterior, que não deixou claro onde terminava o trecho antigo a ser substituído (erro do Claude).
+
+
+## 19/11 - [Nycolas] - ClaudeCode
+Prompt: Tem como fazer um lugar que mostra quantos estão favoritados, por favor? Tipo "Favoritados: 100".
+Resposta: Adicionei no menu do cabeçalho de todas as páginas o contador "Favoritados: N", atualizado ao favoritar, ao remover e quando outra aba altera a lista.
+Aceitei: O contador no menu.
+
